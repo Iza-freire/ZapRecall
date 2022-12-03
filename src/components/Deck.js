@@ -1,16 +1,17 @@
+import { useState } from "react";
 import styled from "styled-components";
 import Fleshcards from "./Flashcards";
 import Header from "./Header";
 
 
-export default function Deck(){
+export default function Deck({cards}){
+    const [open, setOpen] = useState(false)
     return (
         <>
             <Header/>
-            <Fleshcards/>
-            <Fleshcards/>
+            {cards.map((card, indice) => (<Fleshcards key={indice} number={indice + 1} openCars={() => setOpen(indice)} cardOpen={indice === open} question={card.question} answer={card.answer}/>))}
             <FooterContainer>
-               0/4 CONCLUÍDOS
+               0/{cards.length} CONCLUÍDOS
             </FooterContainer>
 
         </>

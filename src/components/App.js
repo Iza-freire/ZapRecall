@@ -5,7 +5,7 @@ export default function App() {
   return (
     <div>
       <ScreenContainer>
-      <Deck></Deck>
+      <Deck cards={cards}></Deck>
       </ScreenContainer>
     </div>
   );

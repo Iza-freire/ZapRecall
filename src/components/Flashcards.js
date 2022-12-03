@@ -1,18 +1,44 @@
+import { useState } from "react"
 import styled from "styled-components"
 import play from "../assets/img/seta_play.png"
+import setaVirar from "../assets/img/seta_virar.png"
+import Button from "./Button"
 
-export default function Fleshcards(){
+export default function Fleshcards({number , openCars, cardOpen, question, answer}){
+    const [virada, setVirada] = useState(false)
+
     return (
-        <ClosedCard>
-            <p>Pergunta</p>
+        <>
+        { cardOpen ? (
+             <OpenCard>
+                { virada ? (
+                    <>
+                     <p>{answer}</p>
+                     <ButtonContainer>
+                        <Button/>
+                     </ButtonContainer>
+                     </>
+                ) : (
+                    <>
+                        <p>{question}</p>
+                        <img onClick={() => setVirada(true)} src={setaVirar}/>
+                    </>
+                )}
+             </OpenCard>
+        ) : ( 
+             <ClosedCard onClick={openCars}>
+            <p>Pergunta {number}</p>
             <img src={play}></img>
         </ClosedCard>
+        )}
+
+        </>
     )
 }
 
 const OpenCard = styled.div`
         width: 300px;
-        margin: 12px;
+        margin: 20px;
         padding: 15px;
         min-height: 100px;
         background: #FFFFD5;
@@ -36,9 +62,9 @@ const OpenCard = styled.div`
 `
 const ClosedCard = styled.div`
         width: 300px;
-        height: 40px;
+        height: 35px;
         background-color: #FFFFFF;
-        margin: 15px;
+        margin: 12px;
         padding: 15px;
         box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
         border-radius: 5px;
@@ -53,4 +79,10 @@ const ClosedCard = styled.div`
             line-height: 19px;
             color: #333333;
         }
+`
+const ButtonContainer = styled.div`
+        display: flex;
+        width: 85%;
+        justify-content: space-between;
+        margin: 20px;
 `
