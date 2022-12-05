@@ -47,7 +47,7 @@ export default function Fleshcards({number , openCars, cardOpen, question, new2,
                     ) : (
                         <>
                             <p data-test="flashcard-text">{question}</p>
-                            <img onClick={() => setVirada(true)} src={setaVirar} alt="Virar Flashcard" />
+                            <img data-test="turn-btn" onClick={() => setVirada(true)} src={setaVirar} alt="Virar Flashcard" />
                         </>
                     )}
                 </OpenCard>

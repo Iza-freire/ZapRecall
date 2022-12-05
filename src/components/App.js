@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import GlobalStyle from "../assets/css/GlobalStyle";
 import Deck from "./Deck";
 
 export default function App() {
   return (
     <div>
       <ScreenContainer>
+      <GlobalStyle/>
       <Deck cards={cards}></Deck>
       </ScreenContainer>
     </div>

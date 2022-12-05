@@ -5,7 +5,7 @@ export default function Header(){
     return(
         <LogoContainer>
             <img src={logo} alt="Logo Zaprecall" ></img>
-            <h1>Zaprecall</h1>
+            <h1>ZapRecall</h1>
         </LogoContainer>
     )
 }
