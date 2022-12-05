@@ -7,7 +7,7 @@ import Header from "./Header";
 export default function Deck({cards}){
     const [open, setOpen] = useState(false)
     const [confResp, setConfReso] = useState([])
-    console.log(confResp)
+
 
     function ConfResp(status){
         if (open !== null){
@@ -32,7 +32,9 @@ export default function Deck({cards}){
         <>
             <Header/>
             {cards.map((card, indice) => (
-            <Fleshcards key={indice} 
+            <Fleshcards 
+            data-test="flashcard"
+            key={indice} 
             number={indice + 1} 
             openCars={() => setOpen(indice)} 
             cardOpen={indice === open} 
@@ -40,10 +42,8 @@ export default function Deck({cards}){
             answer={card.answer} 
             new2={ConfResp}
             status={pegarCardStatus(indice)}/>))}
-            <FooterContainer>
-
+            <FooterContainer data-test="footer">
                {confResp.length}/{cards.length} CONCLUÍDOS
-               
             </FooterContainer>
 
         </>

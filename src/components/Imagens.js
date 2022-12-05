@@ -8,10 +8,10 @@ export default function Imagens({status, abrir}){
 
     return( 
         <ImagensButton>
-            {status === "status não definido" && <button> <img src={play} alt="seta" onClick={abrir}/> </button>}
-            {status === "erro" &&  <button><img src={erro} alt="não lembrou"/> </button>}
-            {status === "meioAcerto" && <button><img src={quase} alt="quase lembrou"/></button>}
-            {status === "acerto" && <button><img src={certo} alt="acertou"/></button>}
+            {status === "status não definido" && <button> <img src={play} alt="seta" onClick={abrir} data-test="play-btn"/> </button>}
+            {status === "erro" &&  <button><img src={erro} alt="não lembrou" data-test="no-icon" /> </button>}
+            {status === "meioAcerto" && <button><img src={quase} alt="Quase esqueceu" data-test="partial-icon" /></button>}
+            {status === "acerto" && <button><img src={certo} alt="acertou"  data-test="zap-icon"/></button>}
         </ImagensButton>
     )
 }

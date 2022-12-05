@@ -37,23 +37,23 @@ export default function Fleshcards({number , openCars, cardOpen, question, new2,
                 <OpenCard>
                     {virada ? (
                         <>
-                            <p>{answer}</p>
+                            <p data-test="flashcard-text">{answer}</p>
                             <ButtonContainer>
-                                <ButtonFlascards onClick={() => new2("erro")} cor={VERMELHO}> Não Lembrei </ButtonFlascards>
-                                <ButtonFlascards onClick={() => new2("meioAcerto")} cor={AMARELO}>Quase esqueci</ButtonFlascards>
-                                <ButtonFlascards onClick={() => new2("acerto")} cor={VERDE}>Zap!</ButtonFlascards>
+                                <ButtonFlascards onClick={() => new2("erro")} cor={VERMELHO} data-test="no-btn"> Não Lembrei </ButtonFlascards>
+                                <ButtonFlascards onClick={() => new2("meioAcerto")} cor={AMARELO} data-test="partial-btn">Quase esqueci</ButtonFlascards>
+                                <ButtonFlascards onClick={() => new2("acerto")} cor={VERDE}  data-test="zap-btn" >Zap!</ButtonFlascards>
                             </ButtonContainer>
                         </>
                     ) : (
                         <>
-                            <p>{question}</p>
-                            <img onClick={() => setVirada(true)} src={setaVirar} />
+                            <p data-test="flashcard-text">{question}</p>
+                            <img onClick={() => setVirada(true)} src={setaVirar} alt="Virar Flashcard" />
                         </>
                     )}
                 </OpenCard>
             ) : (
                 <ClosedCard  >
-                    <ClosedCardTexto cor={definindoCores} status={status}>Pergunta {number}</ClosedCardTexto>
+                    <ClosedCardTexto cor={definindoCores} status={status} data-test="flashcard-text">Pergunta {number}</ClosedCardTexto>
                     <Imagens status={status} abrir={abrir}/>
                 </ClosedCard>
             )}

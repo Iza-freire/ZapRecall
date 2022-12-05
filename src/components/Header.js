@@ -4,7 +4,7 @@ import logo from "..//assets/img/logo.png"
 export default function Header(){
     return(
         <LogoContainer>
-            <img src={logo}></img>
+            <img src={logo} alt="Logo Zaprecall" ></img>
             <h1>Zaprecall</h1>
         </LogoContainer>
     )
