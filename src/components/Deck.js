@@ -6,12 +6,44 @@ import Header from "./Header";
 
 export default function Deck({cards}){
     const [open, setOpen] = useState(false)
+    const [confResp, setConfReso] = useState([])
+    console.log(confResp)
+
+    function ConfResp(status){
+        if (open !== null){
+            const newArray = [...confResp, { index: open, status: status}]
+            setConfReso(newArray)
+            setOpen(null)
+        } 
+        console.log(status)
+    }
+    function pegarCardStatus(indice){
+        const Card2 = confResp.find((obj) => obj.index === indice)
+        if (Card2 !== undefined ){
+            return Card2.status
+        } else {
+            return "status não definido"
+        }
+    }
+
+
+
     return (
         <>
             <Header/>
-            {cards.map((card, indice) => (<Fleshcards key={indice} number={indice + 1} openCars={() => setOpen(indice)} cardOpen={indice === open} question={card.question} answer={card.answer}/>))}
+            {cards.map((card, indice) => (
+            <Fleshcards key={indice} 
+            number={indice + 1} 
+            openCars={() => setOpen(indice)} 
+            cardOpen={indice === open} 
+            question={card.question} 
+            answer={card.answer} 
+            new2={ConfResp}
+            status={pegarCardStatus(indice)}/>))}
             <FooterContainer>
-               0/{cards.length} CONCLUÍDOS
+
+               {confResp.length}/{cards.length} CONCLUÍDOS
+               
             </FooterContainer>
 
         </>

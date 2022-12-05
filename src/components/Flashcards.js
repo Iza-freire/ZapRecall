@@ -1,36 +1,62 @@
 import { useState } from "react"
 import styled from "styled-components"
-import play from "../assets/img/seta_play.png"
 import setaVirar from "../assets/img/seta_virar.png"
-import Button from "./Button"
+import cores from "../assets/css/Cores"
+import Imagens from "./Imagens"
 
-export default function Fleshcards({number , openCars, cardOpen, question, answer}){
+const { VERMELHO, AMARELO, VERDE, CINZA} = cores;
+
+export default function Fleshcards({number , openCars, cardOpen, question, new2, answer, status}){
     const [virada, setVirada] = useState(false)
+
+    function abrir(){
+          if (status === "status não definido" ){
+            openCars()
+
+          } 
+    }
+
+    function definindoCores(){
+        switch (status) {
+            case "erro":
+                return VERMELHO
+            case "meioAcerto":
+                return AMARELO
+            case "acerto":
+                return VERDE
+            default: 
+                return CINZA
+
+        }
+    }
+
 
     return (
         <>
-        { cardOpen ? (
-             <OpenCard>
-                { virada ? (
-                    <>
-                     <p>{answer}</p>
-                     <ButtonContainer>
-                        <Button/>
-                     </ButtonContainer>
-                     </>
-                ) : (
-                    <>
-                        <p>{question}</p>
-                        <img onClick={() => setVirada(true)} src={setaVirar}/>
-                    </>
-                )}
-             </OpenCard>
-        ) : ( 
-             <ClosedCard onClick={openCars}>
-            <p>Pergunta {number}</p>
-            <img src={play}></img>
-        </ClosedCard>
-        )}
+            {cardOpen ? (
+                <OpenCard>
+                    {virada ? (
+                        <>
+                            <p>{answer}</p>
+                            <ButtonContainer>
+                                <ButtonFlascards onClick={() => new2("erro")} cor={VERMELHO}> Não Lembrei </ButtonFlascards>
+                                <ButtonFlascards onClick={() => new2("meioAcerto")} cor={AMARELO}>Quase esqueci</ButtonFlascards>
+                                <ButtonFlascards onClick={() => new2("acerto")} cor={VERDE}>Zap!</ButtonFlascards>
+                            </ButtonContainer>
+                        </>
+                    ) : (
+                        <>
+                            <p>{question}</p>
+                            <img onClick={() => setVirada(true)} src={setaVirar} />
+                        </>
+                    )}
+                </OpenCard>
+            ) : (
+                <ClosedCard  >
+                    <ClosedCardTexto cor={definindoCores} status={status}>Pergunta {number}</ClosedCardTexto>
+                    <Imagens status={status} abrir={abrir}/>
+                </ClosedCard>
+            )}
 
         </>
     )
@@ -59,6 +85,7 @@ const OpenCard = styled.div`
             bottom: 10px;
             right: 10px;
         }
+  
 `
 const ClosedCard = styled.div`
         width: 300px;
@@ -71,18 +98,39 @@ const ClosedCard = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        p {
+`
+const ClosedCardTexto = styled.p`
             font-family: 'Recursive';
             font-style: normal;
             font-weight: bold;
             font-size: 16px;
             line-height: 19px;
-            color: #333333;
-        }
+            color:${props => props.cor};
+            text-decoration: ${props => props.status === "status não definido" ? "none" : "line-through"};
 `
+
 const ButtonContainer = styled.div`
         display: flex;
         width: 85%;
         justify-content: space-between;
         margin: 20px;
+`
+
+const ButtonFlascards = styled.div`
+        width: 100px;
+        font-family: 'Recursive';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #FFFFFF;
+       background: ${props => props.cor};
+        border-radius: 5px;
+        border: 1px solid ${props => props.cor};
+        padding:5px;
+        margin-left: 10px;//
 `
