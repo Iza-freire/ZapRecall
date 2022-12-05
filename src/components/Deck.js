@@ -15,7 +15,6 @@ export default function Deck({cards}){
             setConfReso(newArray)
             setOpen(null)
         } 
-        console.log(status)
     }
     function pegarCardStatus(indice){
         const Card2 = confResp.find((obj) => obj.index === indice)
