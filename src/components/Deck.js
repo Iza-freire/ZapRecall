@@ -32,7 +32,6 @@ export default function Deck({cards}){
             <Header/>
             {cards.map((card, indice) => (
             <Fleshcards 
-            data-test="flashcard"
             key={indice} 
             number={indice + 1} 
             openCars={() => setOpen(indice)} 

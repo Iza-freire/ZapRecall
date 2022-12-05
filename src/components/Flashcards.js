@@ -33,8 +33,8 @@ export default function Fleshcards({number , openCars, cardOpen, question, new2,
 
     return (
         <>
-            {cardOpen ? (
-                <OpenCard>
+            { cardOpen ? (
+                <OpenCard  data-test="flashcard">
                     {virada ? (
                         <>
                             <p data-test="flashcard-text">{answer}</p>
@@ -52,7 +52,7 @@ export default function Fleshcards({number , openCars, cardOpen, question, new2,
                     )}
                 </OpenCard>
             ) : (
-                <ClosedCard  >
+                <ClosedCard  data-test="flashcard" >
                     <ClosedCardTexto cor={definindoCores} status={status} data-test="flashcard-text">Pergunta {number}</ClosedCardTexto>
                     <Imagens status={status} abrir={abrir}/>
                 </ClosedCard>
